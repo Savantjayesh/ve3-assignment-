@@ -1,0 +1,61 @@
+{% extends "events/base.html" %}
+{% block title %}Login{% endblock title %}
+{% block body %}
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center w-100">
+            <h4 class="row justify-content-center p-2 bg-skyblue">First, log in to upload the CSV file</h4>
+            <div class="col-11 col-md-8 col-lg-6 col-xl-4 mx-auto">
+                <div class="card shadow-lg border-0 rounded">
+                    
+                    <div class="card-body p-5">
+                        <h1 class="h3 mb-4 font-weight-bold text-center">Login</h1>
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                        <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control form-control-lg" id="password" name="password" required placeholder="Enter your password">
+                            </div>
+                            <button class="btn btn-primary btn-lg w-100" type="submit">Submit</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="{% url 'signup' %}" class="text-muted">Don't have an account? Sign up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+      
+        .card {
+            background: white;
+            border-radius: 15px;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #ff7e5f;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #feb47b;
+        }
+        .text-muted {
+            color: #6c757d;
+        }
+    </style>
+{% endblock body %}

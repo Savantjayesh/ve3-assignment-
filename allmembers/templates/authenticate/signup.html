@@ -1,0 +1,73 @@
+{% extends "events/base.html" %}
+{% block title %}Signup{% endblock title %}
+{% block body %}
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-9 col-md-6 col-lg-4 col-xl-6 mx-auto">
+                <div class="card shadow-lg border-0 rounded">
+                    <div class="card-body p-4">
+                        <h1 class="h3 mb-4 font-weight-bold text-center">Signup</h1>
+                        {% if messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for message in messages %}
+                                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <form action="{% url 'signup' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label for="firstname" class="form-label">First Name</label>
+                                <input type="text" class="form-control form-control-lg" id="firstname" name="firstname" required placeholder="Enter your first name">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="lastname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control form-control-lg" id="lastname" name="lastname" required placeholder="Enter your last name">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control form-control-lg" id="phone" name="phone" required placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control form-control-lg" id="password" name="password" required placeholder="Enter your password">
+                            </div>
+                            <button class="btn btn-primary btn-lg w-100" type="submit">Signup</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="{% url 'login' %}" class="text-muted">Already have an account? Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #ff7e5f;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #feb47b;
+        }
+        .text-muted {
+            color: #6c757d;
+        }
+    </style>
+{% endblock body %}
